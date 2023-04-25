@@ -257,7 +257,17 @@ public class RichTextEditor extends Composite {
 		this.browserFunctions.add(new BrowserFunction(browser, "customizeToolbar") {
 			@Override
 			public Object function(Object[] arguments) {
-				RichTextEditor.this.editorConfig.customizeToolbar();
+				browser.getDisplay().asyncExec(new Runnable() {
+
+					@Override
+					public void run() {
+						RichTextEditor.this.editorConfig.customizeToolbar();
+						
+					}
+					
+				});
+				
+				
 				return super.function(arguments);
 			}
 		});
